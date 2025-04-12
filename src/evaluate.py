@@ -20,7 +20,7 @@ predictions = estimate_price(mileage, t0, t1)
 # R² (read: “R squared”) shows how well the model explains the real prices.
 # It goes from 0 to 1, and more is better:
 #   R² = 1   → the model is perfect
-#   R² = 0   → the model is useless — might as well guess the average price
+#   R² = 0   → the model is useless 
 #   R² < 0   → you might as well go to a pythoness because the model is worse than a dumb guess
 def evaluate():
     errors = predictions - price
