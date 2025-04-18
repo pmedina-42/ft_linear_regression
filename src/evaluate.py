@@ -39,4 +39,7 @@ def evaluate():
     print(f"- R²   (R-squared): {r2:.5f}")
 
 if __name__=="__main__":
-    evaluate()
+    try:
+        evaluate()
+    except Exception as e:
+        print('Something went wrong')

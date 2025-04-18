@@ -28,18 +28,23 @@ def train(mileage, price, learning_rate=0.042, iterations=2400):
 
 # Main
 if __name__ == "__main__":
-    mileage, price = load_data('../resources/data.csv')
+    try:
+        mileage, price = load_data('../resources/data.csv')
 
-    mileage_norm = normalize(mileage)
-    price_norm = normalize(price)
+        mileage_norm = normalize(mileage)
+        price_norm = normalize(price)
 
-    normTheta0, normTheta1 = train(mileage_norm, price_norm)
-    theta0, theta1 = denormalize_thetas(mileage, price, normTheta0, normTheta1)
+        normTheta0, normTheta1 = train(mileage_norm, price_norm)
+        theta0, theta1 = denormalize_thetas(mileage, price, normTheta0, normTheta1)
 
-    print(f"Training completed.\nθ0 = {theta0:.5f}\nθ1 = {theta1:.5f}")
-    # Predict and denormalize
-    data_predicted_price = estimate.estimate_price(mileage, theta0, theta1)
-    predicted_price = denormalize(data_predicted_price, price)
-    save_model(theta0, theta1)
+        print(f"Training completed.\nθ0 = {theta0:.5f}\nθ1 = {theta1:.5f}")
+        # Predict and denormalize
+        data_predicted_price = estimate.estimate_price(mileage, theta0, theta1)
+        predicted_price = denormalize(data_predicted_price, price)
+        save_model(theta0, theta1)
 
-    plot_regression(mileage, price, data_predicted_price)
+        plot_regression(mileage, price, data_predicted_price)
+    except Exception as e:
+        print('Something went wrong')
+    except KeyboardInterrupt as e:
+        print('Program stopped while plotting linear regression')
